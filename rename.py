@@ -4,7 +4,7 @@
 import os
 import re
 
-TargetPath = '/home/denjo/"name of directory"'
+TargetPath = '/home/denjo/"name of directory"'   # input name of directory
 
 FileList = os.listdir(TargetPath)
 k = len(FileList)

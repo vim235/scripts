@@ -1,38 +1,42 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- 
 
 import os
 import re
 
-TargetPath = '/home/denjo/"name of directory"'   # input name of directory
+TargetPath = '/home/denjo/tumblr2'   # input name of directory
 
 FileList = os.listdir(TargetPath)
-k = len(FileList)
-L = []
-for f in FileList:
-    TS = os.stat(f).st_mtime
-    L.append([TS, f])
 
-L.sort()
+L = []
 
 p = re.compile(".*jpg$")
 q = re.compile(".*png$")
 r = re.compile(".*gif$")
+ 
+for f in FileList:
+    TS = os.stat(f).st_mtime
+    L.append([TS, f])
+
+M = []
+for i in xrange(len(L)):
+    if p.search(L[i][1]) or q.search(L[i][1]) or r.search(L[i][1]):
+        M.append([L[i][0], L[i][1]])
+M.sort()
+
 i = 1
 j = 0
-while j < k:
-    if p.search("%s" % L[j][1]):
-        os.rename("%s" % L[j][1], "%s.jpg" % str(i))
+while j < len(M):
+    if p.search(M[j][1]):
+        os.rename(M[j][1], "%s.jpg" % str(i))
         i += 1
         j += 1
-    elif q.search("%s" % L[j][1]):
-        os.rename("%s" % L[j][1], "%s.png" % str(i))
+    elif q.search(M[j][1]):
+        os.rename(M[j][1], "%s.png" % str(i))
         i += 1
         j += 1
-    elif r.search("%s" % L[j][1]):
-        os.rename("%s" % L[j][1], "%s.gif" % str(i))
+    elif r.search(M[j][1]):
+        os.rename(M[j][1], "%s.gif" % str(i))
         i += 1
         j += 1
     else:
         j += 1
-

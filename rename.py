@@ -3,7 +3,7 @@
 import os
 import re
 
-TargetPath = '/home/denjo/tumblr2'   # input name of directory
+TargetPath = ''   # input name of directory
 
 FileList = os.listdir(TargetPath)
 

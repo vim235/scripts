@@ -2,10 +2,10 @@
 #coding: utf-8
 
 import urllib, Image
-import re, sys, os.path
+import re, sys, os
 
 urllist = []
-for i in range(1, num):                # num = number of pages of blogs you want to download
+for i in range(1, num):                # num = the number of pages of blogs you want to download
     urllist.append('http://'blog's name'.tumblr.com/page/%d' % i)  #input blog's name you want to download
 
 
@@ -41,15 +41,17 @@ g.close()
 f = open("urlfile1.py", "r")
 g = open("urlfile2.py", "r")
 
+u1 = []
+u2 = []
 for i in xrange(f_lines):
-    u1 = f.readline().rstrip()
-    for j in xrange(g_lines):
-        u2 = g.readline().rstrip()
-        if u1 != u2:
-            try:
-                download(u1)
-            except IOError:
-                print u1 
+    u1.append(f.readline().rstrip())
+for i in xrange(g_lines):
+    u2.append(g.readline().rstrip())
+
+u3 = set(u1) - set(u2)
+for url in u3:
+    download(url)
+
 
 f.close()
 g.close()

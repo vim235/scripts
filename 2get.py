@@ -5,7 +5,7 @@ import twopy
 import datetime
 import time
 
-b = twopy.Board('http://fox.2ch.net/poverty/')
+b = twopy.Board('')  #input url 
 
 while 1:
     try:
@@ -16,8 +16,6 @@ while 1:
             L[i][1] = b[i]
         L.sort()
         L.reverse()
-        #for i in L:
-        #    print i
         time.sleep(30)
     except:
         time.sleep(30)
@@ -27,7 +25,7 @@ while 1:
         r = L[0][1].post(name=u"", mailaddr=u"",message="")
         if r[0] == twopy.STATUS_COOKIE:
             L[0][1].post(name=u"", mailaddr=u"", message=\
-                    u"頭がパーーン！", hidden=r[2])
+                    u" ", hidden=r[2])
             print L[0][1].title
             time.sleep(50)
     except:
